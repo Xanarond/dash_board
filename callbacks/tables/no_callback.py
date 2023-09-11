@@ -12,6 +12,8 @@ from functions.table_functions import (
     NO_mode,
     NO_top_5_percent_mean,
     NO_bottom_5_percent_mean,
+    NO_mean_top_outlier,
+    NO_mean_bottom_outlier,
 )
 
 current_directory = os.getcwd()
@@ -36,13 +38,13 @@ def register_no_callback(app):
             NO_mode,
             NO_top_5_percent_mean,
             NO_bottom_5_percent_mean,
-            # NO_mean_top_outlier,
-            # NO_mean_bottom_outlier,
+            NO_mean_top_outlier,
+            NO_mean_bottom_outlier,
         ]
         data = []
 
         for function in functions:
             value, name = function(df, json.loads('""'))
-            data.append({'Name': name, 'Value': value})
+            data.append({'Name': name, 'Value': round(value, 4)})
 
         return data

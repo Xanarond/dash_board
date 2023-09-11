@@ -12,8 +12,8 @@ from functions.table_functions import (
     Spyrometry_mode,
     Spyrometry_top_5_percent_mean,
     Spyrometry_bottom_5_percent_mean,
-    # Spyrometry_mean_top_outlier,
-    # Spyrometry_mean_bottom_outlier,
+    Spyrometry_mean_top_outlier,
+    Spyrometry_mean_bottom_outlier,
 )
 
 current_directory = os.getcwd()
@@ -38,13 +38,13 @@ def register_spyrometry_callback(app):
             Spyrometry_mode,
             Spyrometry_top_5_percent_mean,
             Spyrometry_bottom_5_percent_mean,
-            # Spyrometry_mean_top_outlier,
-            # Spyrometry_mean_bottom_outlier,
+            Spyrometry_mean_top_outlier,
+            Spyrometry_mean_bottom_outlier,
         ]
         data = []
 
         for function in functions:
             value, name = function(df, json.loads('""'))
-            data.append({'Name': name, 'Value': value})
+            data.append({'Name': name, 'Value': round(value, 4)})
 
         return data

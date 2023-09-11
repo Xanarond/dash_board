@@ -14,7 +14,7 @@ co2_table = dbc.Row([
                     {'name': 'Value', 'id': 'Value'}
                 ],
                 data=[],
-                style_table={'overflowX': 'auto', 'whiteSpace': 'normal', 'maxHeight': '120px'},
+                style_table={},
                 style_header={
                     'backgroundColor': 'rgb(30, 30, 30)',
                     'color': 'white',
@@ -22,7 +22,8 @@ co2_table = dbc.Row([
                 },
                 style_data={
                     'backgroundColor': 'rgb(50, 50, 50)',
-                    'color': 'white'
+                    'color': 'white',
+                    'textAlign': 'left'
                 },
             ),
         ],

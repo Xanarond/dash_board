@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import pandas as pd
 
@@ -8,7 +10,7 @@ lower_limits = {
     'Temperature': 25,
     'Humidity': 23,
     'Pressure': 983,
-    'SpirometerData': 0.1
+    'Spyrometry': 0.1
 }
 
 upper_limits = {
@@ -18,7 +20,7 @@ upper_limits = {
     'Temperature': 40,
     'Humidity': 80,
     'Pressure': 1020,
-    'SpirometerData': 2.5
+    'Spyrometry': 2.5
 }
 
 
@@ -55,12 +57,12 @@ def CO_bottom_5_percent_mean(data_csv, json_table):
 
 def CO_mean_top_outlier(data_csv, json_table):
     return data_csv["CO"][data_csv["CO"] > upper_limits["CO"]].mean() * data_csv["CO"][
-        data_csv["CO"] > upper_limits["CO"]].count() / len(df), "Mean top outlier"
+        data_csv["CO"] > upper_limits["CO"]].count() / len(data_csv), "Mean top outlier"
 
 
 def CO_mean_bottom_outlier(data_csv, json_table):
     return data_csv["CO"][data_csv["CO"] < lower_limits["CO"]].mean() * data_csv["CO"][
-        data_csv["CO"] < lower_limits["CO"]].count() / len(df), "Mean bottom outlier"
+        data_csv["CO"] < lower_limits["CO"]].count() / len(data_csv), "Mean bottom outlier"
 
 
 # NO
@@ -74,7 +76,7 @@ def NO_min(data_csv, json_table):
 
 
 def NO_max(data_csv, json_table):
-    return data_csv["NO"].max(), "Minimum"
+    return data_csv["NO"].max(), "Maximum"
 
 
 def NO_var(data_csv, json_table):
@@ -95,12 +97,12 @@ def NO_bottom_5_percent_mean(data_csv, json_table):
 
 def NO_mean_top_outlier(data_csv, json_table):
     return data_csv["NO"][data_csv["NO"] > upper_limits["NO"]].mean() * data_csv["NO"][
-        data_csv["NO"] > upper_limits["NO"]].NOunt() / len(df), "Mean top outlier"
+        data_csv["NO"] > upper_limits["NO"]].count() / len(data_csv), "Mean top outlier"
 
 
 def NO_mean_bottom_outlier(data_csv, json_table):
     return data_csv["NO"][data_csv["NO"] < lower_limits["NO"]].mean() * data_csv["NO"][
-        data_csv["NO"] < lower_limits["NO"]].NOunt() / len(df), "Mean bottom outlier"
+        data_csv["NO"] < lower_limits["NO"]].count() / len(data_csv), "Mean bottom outlier"
 
 
 # CO2
@@ -114,7 +116,7 @@ def CO2_min(data_csv, json_table):
 
 
 def CO2_max(data_csv, json_table):
-    return data_csv["CO2"].max(), "Minimum"
+    return data_csv["CO2"].max(), "Maximum"
 
 
 def CO2_var(data_csv, json_table):
@@ -135,12 +137,12 @@ def CO2_bottom_5_percent_mean(data_csv, json_table):
 
 def CO2_mean_top_outlier(data_csv, json_table):
     return data_csv["CO2"][data_csv["CO2"] > upper_limits["CO2"]].mean() * data_csv["CO2"][
-        data_csv["CO2"] > upper_limits["CO2"]].CO2unt() / len(df), "Mean top outlier"
+        data_csv["CO2"] > upper_limits["CO2"]].count() / len(data_csv), "Mean top outlier"
 
 
 def CO2_mean_bottom_outlier(data_csv, json_table):
     return data_csv["CO2"][data_csv["CO2"] < lower_limits["CO2"]].mean() * data_csv["CO2"][
-        data_csv["CO2"] < lower_limits["CO2"]].CO2unt() / len(df), "Mean bottom outlier"
+        data_csv["CO2"] < lower_limits["CO2"]].count() / len(data_csv), "Mean bottom outlier"
 
 
 # Spyrometry
@@ -154,7 +156,7 @@ def Spyrometry_min(data_csv, json_table):
 
 
 def Spyrometry_max(data_csv, json_table):
-    return data_csv["Spyrometry"].max(), "Minimum"
+    return data_csv["Spyrometry"].max(), "Maximum"
 
 
 def Spyrometry_var(data_csv, json_table):
@@ -176,12 +178,11 @@ def Spyrometry_bottom_5_percent_mean(data_csv, json_table):
 
 def Spyrometry_mean_top_outlier(data_csv, json_table):
     return data_csv["Spyrometry"][data_csv["Spyrometry"] > upper_limits["Spyrometry"]].mean() * data_csv["Spyrometry"][
-        data_csv["Spyrometry"] > upper_limits["Spyrometry"]].Spyrometryunt() / len(df), "Mean top outlier"
+        data_csv["Spyrometry"] > upper_limits["Spyrometry"]].count() / len(data_csv), "Mean top outlier"
 
 
 def Spyrometry_mean_bottom_outlier(data_csv, json_table):
     return data_csv["Spyrometry"][data_csv["Spyrometry"] < lower_limits["Spyrometry"]].mean() * data_csv["Spyrometry"][
-        data_csv["Spyrometry"] < lower_limits["Spyrometry"]].Spyrometryunt() / len(df), "Mean bottom outlier"
-
+        data_csv["Spyrometry"] < lower_limits["Spyrometry"]].count() / len(data_csv), "Mean bottom outlier"
 
 
