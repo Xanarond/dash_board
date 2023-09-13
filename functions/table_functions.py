@@ -10,7 +10,7 @@ lower_limits = {
     'Temperature': 25,
     'Humidity': 23,
     'Pressure': 983,
-    'Spyrometry': 0.1
+    'Spirometry': 0.1
 }
 
 upper_limits = {
@@ -20,7 +20,7 @@ upper_limits = {
     'Temperature': 40,
     'Humidity': 80,
     'Pressure': 1020,
-    'Spyrometry': 2.5
+    'Spirometry': 2.5
 }
 
 
@@ -145,44 +145,44 @@ def CO2_mean_bottom_outlier(data_csv, json_table):
         data_csv["CO2"] < lower_limits["CO2"]].count() / len(data_csv), "Mean bottom outlier"
 
 
-# Spyrometry
+# Spirometry
 
-def Spyrometry_mean(data_csv, json_table):
-    return data_csv["Spyrometry"].mean(), "Average"
-
-
-def Spyrometry_min(data_csv, json_table):
-    return data_csv["Spyrometry"].min(), "Minimum"
+def Spirometry_mean(data_csv, json_table):
+    return data_csv["Spirometry"].mean(), "Average"
 
 
-def Spyrometry_max(data_csv, json_table):
-    return data_csv["Spyrometry"].max(), "Maximum"
+def Spirometry_min(data_csv, json_table):
+    return data_csv["Spirometry"].min(), "Minimum"
 
 
-def Spyrometry_var(data_csv, json_table):
-    return data_csv["Spyrometry"].var(), "Variance"
+def Spirometry_max(data_csv, json_table):
+    return data_csv["Spirometry"].max(), "Maximum"
 
 
-def Spyrometry_mode(data_csv, json_table):
-    return data_csv["Spyrometry"].mode().iloc[0], "Mode"
+def Spirometry_var(data_csv, json_table):
+    return data_csv["Spirometry"].var(), "Variance"
 
 
-def Spyrometry_top_5_percent_mean(data_csv, json_table):
-    return data_csv["Spyrometry"][data_csv["Spyrometry"] > data_csv["Spyrometry"].quantile(0.95)].mean(), "Top 5% mean"
+def Spirometry_mode(data_csv, json_table):
+    return data_csv["Spirometry"].mode().iloc[0], "Mode"
 
 
-def Spyrometry_bottom_5_percent_mean(data_csv, json_table):
-    return data_csv["Spyrometry"][
-        data_csv["Spyrometry"] < data_csv["Spyrometry"].quantile(0.05)].mean(), "Bottom 5% mean"
+def Spirometry_top_5_percent_mean(data_csv, json_table):
+    return data_csv["Spirometry"][data_csv["Spirometry"] > data_csv["Spirometry"].quantile(0.95)].mean(), "Top 5% mean"
 
 
-def Spyrometry_mean_top_outlier(data_csv, json_table):
-    return data_csv["Spyrometry"][data_csv["Spyrometry"] > upper_limits["Spyrometry"]].mean() * data_csv["Spyrometry"][
-        data_csv["Spyrometry"] > upper_limits["Spyrometry"]].count() / len(data_csv), "Mean top outlier"
+def Spirometry_bottom_5_percent_mean(data_csv, json_table):
+    return data_csv["Spirometry"][
+        data_csv["Spirometry"] < data_csv["Spirometry"].quantile(0.05)].mean(), "Bottom 5% mean"
 
 
-def Spyrometry_mean_bottom_outlier(data_csv, json_table):
-    return data_csv["Spyrometry"][data_csv["Spyrometry"] < lower_limits["Spyrometry"]].mean() * data_csv["Spyrometry"][
-        data_csv["Spyrometry"] < lower_limits["Spyrometry"]].count() / len(data_csv), "Mean bottom outlier"
+def Spirometry_mean_top_outlier(data_csv, json_table):
+    return data_csv["Spirometry"][data_csv["Spirometry"] > upper_limits["Spirometry"]].mean() * data_csv["Spirometry"][
+        data_csv["Spirometry"] > upper_limits["Spirometry"]].count() / len(data_csv), "Mean top outlier"
+
+
+def Spirometry_mean_bottom_outlier(data_csv, json_table):
+    return data_csv["Spirometry"][data_csv["Spirometry"] < lower_limits["Spirometry"]].mean() * data_csv["Spirometry"][
+        data_csv["Spirometry"] < lower_limits["Spirometry"]].count() / len(data_csv), "Mean bottom outlier"
 
 

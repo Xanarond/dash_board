@@ -26,9 +26,11 @@ def register_no_callback(app):
     # Обновление таблицы с помощью функций
     @app.callback(
         Output('no-table', 'data'),
-        Input('no-table', 'id')
+        Input('no-table', 'id'),
+        Input('csv-store', 'data'),
+        Input('json-store', 'data')
     )
-    def update_table(_):
+    def update_table(_, csv_data, json_data):
         # Вызываем функции и добавляем их результаты в список
         functions = [
             NO_mean,
@@ -42,7 +44,10 @@ def register_no_callback(app):
             NO_mean_bottom_outlier,
         ]
         data = []
-
+        df = pd.DataFrame(csv_data,
+                          columns=["Time", "CO2", "CO", "NO",
+                                   "Temperature", "Humidity",
+                                   "Pressure", "Spirometry"])
         for function in functions:
             value, name = function(df, json.loads('""'))
             data.append({'Name': name, 'Value': round(value, 4)})

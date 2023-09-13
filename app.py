@@ -1,7 +1,10 @@
 import dash
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import html, dcc
+
 from callbacks.callback_pool import callback_pool
+from callbacks.file_reading_callback import file_reading_callback
+from layouts.buttons.button_layout import button_download
 from layouts.charts.blox_layout import blox_chart
 from layouts.charts.linear_layout import linear_chart
 from layouts.charts.linear_layout2 import linear_chart2
@@ -13,16 +16,18 @@ from layouts.tables.no_table_layout import no_table
 from layouts.tables.spyrometry_table_layout import spyrometry_table
 from layouts.tables.survey_table_layout import survey_table
 
-# from weasyprint import HTML, pdf
 
 app = dash.Dash(external_stylesheets=[dbc.themes.CYBORG])
 app.config.suppress_callback_exceptions = True
 
 app.layout = html.Div([
-    dbc.Row(dbc.Col([dbc.Button("Выбор папки данных",
-                                color="dark", className='mt-5 align-center')],
-                    width=4,
-                    )),
+    dcc.Store(id='csv-store'),
+    dcc.Store(id='json-store'),
+    dbc.Row(dbc.Col([
+        button_download
+    ],
+        width=4,
+    )),
     html.Div(style={'height': '5px'}),
     dbc.Row([
         dbc.Col([

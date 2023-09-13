@@ -16,5 +16,28 @@ fig.update_layout(plot_bgcolor='rgba(0, 0, 0, 0)', paper_bgcolor='rgba(0, 0, 0, 
                          'x': 0.46, 'y': 0.92}, )
 
 blox_chart = dbc.Row([
-    dcc.Graph(figure=fig, style={'width': '100%', 'height': '100vh'})
+    dcc.Graph(
+        id='box-plot',
+        figure={
+            'data': [
+                go.Box(
+                    y=data,
+                    boxpoints='all',  # Показывать все значения в box plot
+                    jitter=0.3,  # Разброс точек для лучшей видимости
+                    pointpos=-1.8  # Позиция точек по вертикали (-1.8 - слева от box plot)
+                ),
+                go.Scatter(
+                    x=[2, 2],  # Добавляем две вертикальные линии
+                    # y=[min(data), max(data)],
+                    mode='lines',
+                    name='Вертикальные линии'
+                )
+            ],
+            'layout': go.Layout(
+                title='Горизонтальный Box Plot с вертикальными линиями',
+                yaxis=dict(title='Значения'),
+                boxmode='group'  # Группируем box plot
+            )
+        }
+    )
 ])

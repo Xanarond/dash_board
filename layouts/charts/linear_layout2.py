@@ -1,27 +1,24 @@
-import pandas as pd
-from dash import html
-from dash import dcc
 import dash_bootstrap_components as dbc
+import plotly.graph_objects as go
+from dash import dcc
+from dash import html
 
-df = pd.read_csv('data/stockdata2.csv', index_col=0, parse_dates=True, date_format='%Y-%m-%d')
-df.index = pd.to_datetime(df['Date'])
 
-
-def get_options(list_stocks):
+def get_options(graph_data):
     dict_list = []
-    for i in list_stocks:
-        dict_list.append({'label': i, 'value': i})
-
+    for i in graph_data:
+        dict_list.append({'label': i['name'], 'value': i['name']})
     return dict_list
 
 
 linear_chart2 = html.Div([
-    dbc.Row([dcc.Dropdown(id='stockselector2', options=get_options(df['stock'].unique()),
-                          multi=True, value=[df['stock'].sort_values()[0]],
+    dbc.Row([dcc.Dropdown(id='stockselector2', options=[],
+                          multi=True, value=[],
                           style={'backgroundColor': '#1E1E1E'},
                           className='stockselector2'
                           )]),
     dbc.Row(dcc.Graph(id='timeseries2',
                       config={'displayModeBar': False},
-                      animate=True))
+                      animate=True,
+                      style={'backgroundColor': 'rgba(0, 0, 0, 0)'}))
 ], style={'color': '#1E1E1E'})
