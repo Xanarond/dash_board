@@ -3,12 +3,12 @@ from dash import dcc
 from dash import html
 from dash import dash_table
 
-co_table = dbc.Row([
-    html.H3("CO", className='text-center'),
+spirometry_table = dbc.Row([
+    html.H3("Spirometry", className='text-center'),
     dcc.Loading(
         children=[
             dash_table.DataTable(
-                id='co-table',
+                id='spy-table',
                 columns=[
                     {'name': 'Name', 'id': 'Name'},
                     {'name': 'Value', 'id': 'Value'}
@@ -28,5 +28,5 @@ co_table = dbc.Row([
             ),
         ],
         type='circle',
-    )
+    ),
 ])

@@ -3,15 +3,16 @@ from dash import dcc
 from dash import html
 from dash import dash_table
 
-spyrometry_table = dbc.Row([
-    html.H3("SPYROMETRY", className='text-center'),
+co2_table = dbc.Row([
+    html.H3("CO2", className='text-center'),
     dcc.Loading(
         children=[
             dash_table.DataTable(
-                id='spy-table',
+                id='co2-table',
                 columns=[
-                    {'name': 'Name', 'id': 'Name'},
-                    {'name': 'Value', 'id': 'Value'}
+                    {'name': 'CO', 'id': 'CO'},
+                    {'name': 'NO', 'id': 'NO'},
+                    {'name': 'CO2', 'id': 'CO2'}
                 ],
                 data=[],
                 style_table={},
