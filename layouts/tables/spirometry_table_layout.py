@@ -8,10 +8,10 @@ spirometry_table = dbc.Row([
     dcc.Loading(
         children=[
             dash_table.DataTable(
-                id='spy-table',
+                id='spirometry-table',
                 columns=[
-                    {'name': 'Name', 'id': 'Name'},
-                    {'name': 'Value', 'id': 'Value'}
+                    {'name': '', 'id': ''},
+                    {'name': 'SPIROMETRY', 'id': 'SPIROMETRY'}
                 ],
                 data=[],
                 style_table={},
@@ -23,7 +23,7 @@ spirometry_table = dbc.Row([
                 style_data={
                     'backgroundColor': 'rgb(50, 50, 50)',
                     'color': 'white',
-                    'textAlign': 'left'
+                    'textAlign': 'center'
                 },
             ),
         ],

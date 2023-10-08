@@ -5,22 +5,22 @@ import plotly.graph_objects as go
 from functions.chart_functions import create_plot2
 from layouts.charts.linear_layout2 import get_options
 
+dataframe = pd.read_csv('data/synthetic_data.csv')
+
 
 def linear2_callback_register(app):
     @app.callback(Output('timeseries2', 'figure'), Output('stockselector2', 'options'),
-                  [Input('stockselector2', 'value')], Input('csv-store', 'data'))
-    def update_timeseries(selected_dropdown_value, csv_data):
+                  [Input('stockselector2', 'value')])
+    def update_timeseries(selected_dropdown_value):
         trace = []
         shapes = []
-        df = pd.DataFrame(csv_data,
-                          columns=["Time", "CO2", "CO", "NO",
+        df = pd.DataFrame(dataframe,
+                          columns=["Time", "CO2", "CO", "NO", "CH3",
                                    "Temperature", "Humidity",
                                    "Pressure", "Spirometry"])
 
         df_sub = create_plot2(df, '')
-        # print(df_sub)
         options = get_options(df_sub)
-        print('df',options)
 
         colors = ['#5E0DAC', '#FF4F00', '#375CB1', '#FF7400', '#FFF400', '#FF0056']
 
@@ -71,13 +71,13 @@ def linear2_callback_register(app):
         figure = {'data': data,
                   'layout': go.Layout(
                       template='plotly_dark',
-                      paper_bgcolor='rgba(0, 0, 0, 0)',
-                      plot_bgcolor='rgba(0, 0, 0, 0)',
+                      paper_bgcolor='#201F21',
+                      plot_bgcolor='#201F21',
                       margin={'b': 15},
                       hovermode='x',
                       autosize=True,
-                      title={'text': 'Plot 2', 'font': {'color': 'white'}, 'x': 0.5},
-                      legend={'x': 0, 'y': -0.3, 'yanchor': 'bottom'},
+                      title={'text': 'Tidal volume', 'font': {'color': 'white'}, 'x': 0.5},
+                      legend={'x': 0, 'y': -0.5, 'yanchor': 'bottom'},
                       shapes=shapes,
                       xaxis={'title': 'Time'},
                       yaxis={'title': 'Value'}

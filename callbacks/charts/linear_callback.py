@@ -1,25 +1,24 @@
 import pandas as pd
 import plotly.graph_objects as go
 from dash import Output, Input
-from dash import dcc
 
 from functions.chart_functions import create_plot1
-from layouts.charts.linear_layout import get_options
+
+dataf = pd.read_csv('data/synthetic_data.csv')
 
 
 def linear1_callback_register(app):
-    @app.callback(Output('timeseries1', 'figure'), Output('stockselector1', 'options'),
-                  [Input('stockselector1', 'value')], Input('csv-store', 'data'))
-    def update_timeseries(selected_dropdown_value, csv_data):
+    @app.callback(Output('timeseries1', 'figure'),
+                  [Input('stockselector1', 'value')])
+    def update_timeseries(selected_dropdown_value):
         trace = []
         shapes = []
-        df = pd.DataFrame(csv_data,
-                          columns=["Time", "CO2", "CO", "NO",
+        df = pd.DataFrame(dataf,
+                          columns=["Time", "CO2", "CO", "NO", "CH3",
                                    "Temperature", "Humidity",
                                    "Pressure", "Spirometry"])
 
         df_sub = create_plot1(df, '')
-        options = get_options(df_sub)
 
         colors = ['#5E0DAC', '#FF4F00', '#375CB1', '#FF7400', '#FFF400', '#FF0056']
 
@@ -70,16 +69,16 @@ def linear1_callback_register(app):
         figure = {'data': data,
                   'layout': go.Layout(
                       template='plotly_dark',
-                      paper_bgcolor='rgba(0, 0, 0, 0)',
-                      plot_bgcolor='rgba(0, 0, 0, 0)',
+                      paper_bgcolor='#201F21',
+                      plot_bgcolor='#201F21',
                       margin={'b': 15},
                       hovermode='x',
                       autosize=True,
-                      title={'text': 'Plot 1', 'font': {'color': 'white'}, 'x': 0.5},
-                      legend={'x': 0, 'y': -0.3, 'yanchor': 'bottom'},
+                      title={'text': 'Concentrations', 'font': {'color': 'white'}, 'x': 0.5},
+                      legend={'x': 0, 'y': -0.5, 'yanchor': 'bottom'},
                       shapes=shapes,
                       xaxis={'title': 'Time'},
                       yaxis={'title': 'Value'}
                   ),
                   }
-        return figure, options
+        return figure

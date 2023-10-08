@@ -8,7 +8,7 @@ from dash import dcc, html
 
 button_download = html.Div([
     dcc.Upload(id='upload-data',
-               children=dbc.Button("Выбор папки данных",
+               children=dbc.Button("Data Source",
                                    color="dark", className='mt-5 align-center'), multiple=True),
 ])
 

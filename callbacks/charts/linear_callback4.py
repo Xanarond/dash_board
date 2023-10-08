@@ -5,14 +5,16 @@ import plotly.graph_objects as go
 from functions.chart_functions import create_plot4
 from layouts.charts.linear_layout4 import get_options
 
+dataf = pd.read_csv('data/synthetic_data.csv')
+
 
 def linear4_callback_register(app):
     @app.callback(Output('timeseries4', 'figure'), Output('stockselector4', 'options'),
-                  [Input('stockselector4', 'value')], Input('csv-store', 'data'))
-    def update_timeseries(selected_dropdown_value, csv_data):
+                  [Input('stockselector4', 'value')])
+    def update_timeseries(selected_dropdown_value):
         trace = []
         shapes = []
-        df = pd.DataFrame(csv_data,
+        df = pd.DataFrame(dataf,
                           columns=["Time", "CO2", "CO", "NO",
                                    "Temperature", "Humidity",
                                    "Pressure", "Spirometry"])
@@ -69,13 +71,13 @@ def linear4_callback_register(app):
         figure = {'data': data,
                   'layout': go.Layout(
                       template='plotly_dark',
-                      paper_bgcolor='rgba(0, 0, 0, 0)',
-                      plot_bgcolor='rgba(0, 0, 0, 0)',
+                      paper_bgcolor='#201F21',
+                      plot_bgcolor='#201F21',
                       margin={'b': 15},
                       hovermode='x',
                       autosize=True,
-                      title={'text': 'Plot 4', 'font': {'color': 'white'}, 'x': 0.5},
-                      legend={'x': 0, 'y': -0.3, 'yanchor': 'bottom'},
+                      title={'text': 'Cumulative exhaled volume', 'font': {'color': 'white'}, 'x': 0.5},
+                      legend={'x': 0, 'y': -0.5, 'yanchor': 'bottom'},
                       shapes=shapes,
                       xaxis={'title': 'Time'},
                       yaxis={'title': 'Value'}

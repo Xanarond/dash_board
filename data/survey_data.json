@@ -1,1 +1,8 @@
-{"ID": 1, "Gender": "Male", "Age": 28, "Weight": 75.5, "Height": 180, "SmokingStatus": "Never Smoked"}
+ {
+    "ID": 1,
+    "Gender": "Male",
+    "Age": 28,
+    "Weight": 75.5,
+    "Height": 180,
+    "SmokingStatus": "Never Smoked"
+  }

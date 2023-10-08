@@ -1,9 +1,8 @@
 import json
 
-import pandas as pd
 from dash import Output, Input, State
 
-from layouts.buttons.button_layout import parse_contents
+from layouts.buttons.input_button_layout import parse_contents
 
 
 def file_reading_callback(app):
@@ -32,6 +31,4 @@ def file_reading_callback(app):
                     if df is not None:
                         json_string = json.dumps(df)
                         data = json.loads(json_string)
-                        data_tuples = [(key, value) for key, value in data.items()]
-                        df = pd.DataFrame(data_tuples, columns=['Name', 'Value']).to_dict('records')
-                    return df
+                        return [data]

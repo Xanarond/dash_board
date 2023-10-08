@@ -7,6 +7,7 @@ def register_survey_callback(app):
         Input('json-store', 'data')
     )
     def update_table(json_data):
-        # print(10, json_data)
         if json_data is not None:
             return json_data
+        else:
+            return []
